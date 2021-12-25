@@ -1,5 +1,8 @@
-function preload(){
+noseX=0;
+noseY=0;
 
+function preload(){
+clown_nose=loadImage("https://i.postimg.cc/tTjFYL6m/0-8571-moustache-png-clipart-mustache-and-beard-clipart-transparent-removebg-preview.png")
 }
 
 function setup(){
@@ -14,6 +17,7 @@ function setup(){
 
 function draw(){
     image(video,0,0,300,300);
+    image(clown_nose,noseX,noseY,50,30)
 }
 
 function takeSnapshot(){
@@ -27,9 +31,12 @@ function modelLoaded(){
 }
 
 function gotPoses(results){
-      if (results.length>0){
-          console.log(results);
-          console.log("noseX="+results[0].pose.nose.x);
-          console.log("noseY="+results[0].pose.nose.y);
-      }
+    if (results.length>0){
+        console.log(results);
+        noseX= results[0].pose.nose.x-28;
+        noseY= results[0].pose.nose.y-3;
+
+        console.log("noseX="+results[0].pose.nose.x);
+        console.log("noseY="+results[0].pose.nose.y);
+    }
 }
